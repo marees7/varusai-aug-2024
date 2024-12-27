@@ -6,3 +6,12 @@ INFO:2024/12/27 17:48:56 C:/Project/MithrasoftExercises/golang/shopping-site/int
 INFO:2024/12/27 17:48:56 C:/Project/MithrasoftExercises/golang/shopping-site/internals/migration.go:17: Migration Completed
 INFO:2024/12/27 17:50:47 C:/Project/MithrasoftExercises/golang/shopping-site/internals/connection.go:20: Connected to postgress client
 INFO:2024/12/27 17:50:47 C:/Project/MithrasoftExercises/golang/shopping-site/internals/migration.go:17: Migration Completed
+INFO:2024/12/27 18:44:50 C:/Project/MithrasoftExercises/golang/Git/shopping_site/varusai-aug-2024/internals/connection.go:20: Connected to postgress client
+INFO:2024/12/27 18:44:50 C:/Project/MithrasoftExercises/golang/Git/shopping_site/varusai-aug-2024/internals/migration.go:17: Migration Completed
+INFO:2024/12/27 18:51:24 C:/Project/MithrasoftExercises/golang/Git/shopping_site/varusai-aug-2024/internals/connection.go:20: Connected to postgress client
+INFO:2024/12/27 18:51:24 C:/Project/MithrasoftExercises/golang/Git/shopping_site/varusai-aug-2024/internals/migration.go:17: Migration Completed
+ERROR:2024/12/27 18:52:21 C:/Project/MithrasoftExercises/golang/Git/shopping_site/varusai-aug-2024/api/handlers/authhandler.go:61: invalid password
+ERROR:2024/12/27 18:52:32 C:/Project/MithrasoftExercises/golang/Git/shopping_site/varusai-aug-2024/api/handlers/authhandler.go:61: invalid password
+ERROR:2024/12/27 18:52:38 C:/Project/MithrasoftExercises/golang/Git/shopping_site/varusai-aug-2024/api/handlers/authhandler.go:61: invalid password
+ERROR:2024/12/27 18:53:49 C:/Project/MithrasoftExercises/golang/Git/shopping_site/varusai-aug-2024/api/handlers/authhandler.go:61: invalid password
+ERROR:2024/12/27 18:53:59 C:/Project/MithrasoftExercises/golang/Git/shopping_site/varusai-aug-2024/api/middleware/role_authentication.go:57: insufficient permission

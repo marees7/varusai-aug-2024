@@ -37,7 +37,8 @@ func (handler *AuthHandler) SignupHandler(ctx *fiber.Ctx) error {
 		return ctx.Status(err.Status).JSON(dto.ResponseJson{Error: err.Error})
 	}
 
-	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{Message: "User Created"})
+	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{
+		Message: "user created successfully"})
 }
 
 func (handler *AuthHandler) LoginHandler(ctx *fiber.Ctx) error {
@@ -86,6 +87,7 @@ func (handler *AuthHandler) LoginHandler(ctx *fiber.Ctx) error {
 	}
 
 	ctx.Cookie(&cookie)
-	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{Message: "Logged in successfully"})
+	return ctx.Status(fiber.StatusOK).JSON(dto.ResponseJson{
+		Message: "logged in successfully"})
 
 }

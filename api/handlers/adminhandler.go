@@ -31,7 +31,7 @@ func (service *AdminHandler) AddCategoreyHandler(ctx *fiber.Ctx) error {
 	}
 
 	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{
-		Message: "Category created successfully",
+		Message: "category created successfully",
 		Data:    category,
 	})
 }
@@ -54,7 +54,7 @@ func (service *AdminHandler) AddBrandHandler(ctx *fiber.Ctx) error {
 	}
 
 	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{
-		Message: "Brand created successfully",
+		Message: "brand created successfully",
 		Data:    brand,
 	})
 }

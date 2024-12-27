@@ -18,7 +18,7 @@ func UserRoute(app *fiber.App, db *gorm.DB) {
 	handler := handlers.UserHandler{IUserService: userService}
 
 	user := app.Group("/v1/role/user")
-	user.Use(middleware.ValidateJwt)
+	user.Use(middleware.ValidateJwt, middleware.UserRoleAuthentication)
 
 	user.Post("/order", handler.PlaceOrderHandler)
 	user.Get("/order", handler.GetOrdersHandler)

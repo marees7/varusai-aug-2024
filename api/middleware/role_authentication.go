@@ -13,7 +13,7 @@ func AdminRoleAuthentication(ctx *fiber.Ctx) error {
 	if role == "" {
 		loggers.ErrorLog.Println("role authentication is empty")
 		return ctx.Status(fiber.StatusInternalServerError).JSON(dto.ResponseJson{
-			Error: "insuffisient permission",
+			Error: "something went wrong",
 		})
 	}
 
@@ -31,11 +31,29 @@ func MerchantRoleAuthentication(ctx *fiber.Ctx) error {
 	if role == "" {
 		loggers.ErrorLog.Println("role authentication is empty")
 		return ctx.Status(fiber.StatusInternalServerError).JSON(dto.ResponseJson{
-			Error: "insuffisient permission",
+			Error: "something went wrong",
 		})
 	}
 
 	if role != constants.MerchantRole {
+		loggers.ErrorLog.Println("insufficient permission")
+		return ctx.Status(fiber.StatusUnauthorized).JSON(dto.ResponseJson{
+			Error: "insuffisient permission",
+		})
+	}
+	return ctx.Next()
+}
+
+func UserRoleAuthentication(ctx *fiber.Ctx) error {
+	role := ctx.Locals("role")
+	if role == "" {
+		loggers.ErrorLog.Println("role authentication is empty")
+		return ctx.Status(fiber.StatusInternalServerError).JSON(dto.ResponseJson{
+			Error: "something went wrong",
+		})
+	}
+
+	if role != constants.UserRole {
 		loggers.ErrorLog.Println("insufficient permission")
 		return ctx.Status(fiber.StatusUnauthorized).JSON(dto.ResponseJson{
 			Error: "insuffisient permission",

@@ -50,7 +50,7 @@ func (service *MerchantHandler) RemoveProductHandler(ctx *fiber.Ctx) error {
 	}
 
 	return ctx.Status(fiber.StatusOK).JSON(dto.ResponseJson{
-		Message: "product Deleted successfully",
+		Message: "product deleted successfully",
 	})
 }
 
@@ -72,7 +72,7 @@ func (service *MerchantHandler) UpdateProductHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{
+	return ctx.Status(fiber.StatusOK).JSON(dto.ResponseJson{
 		Message: "product updated successfully",
 		Data:    map[string]interface{}{"product_id": product.ProductId},
 	})
@@ -96,7 +96,7 @@ func (service *MerchantHandler) UpdateMerchantHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{
+	return ctx.Status(fiber.StatusOK).JSON(dto.ResponseJson{
 		Message: "user details updated successfully",
 		Data:    map[string]interface{}{"user_id": user.UserId},
 	})
@@ -115,7 +115,7 @@ func (service *MerchantHandler) UpdateOrderStatusHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{
+	return ctx.Status(fiber.StatusOK).JSON(dto.ResponseJson{
 		Message: "order status updated successfully",
 		Data:    map[string]interface{}{"order_id": id},
 	})
@@ -149,7 +149,7 @@ func (service *MerchantHandler) GetProductHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{
+	return ctx.Status(fiber.StatusOK).JSON(dto.ResponseJson{
 		Data: product,
 	})
 }
@@ -164,7 +164,7 @@ func (service *MerchantHandler) GetOrdersHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{
+	return ctx.Status(fiber.StatusOK).JSON(dto.ResponseJson{
 		Data: orders,
 	})
 }
