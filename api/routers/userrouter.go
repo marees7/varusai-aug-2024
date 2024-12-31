@@ -10,21 +10,24 @@ import (
 	"gorm.io/gorm"
 )
 
-func UserRoute(app *fiber.App, db *gorm.DB) {
+func User(app *fiber.App, db *gorm.DB) {
 	userRepository := repositories.CommenceUserRepository(db)
 
 	userService := services.CommenceUserService(userRepository)
 
 	handler := handlers.UserHandler{IUserService: userService}
 
-	user := app.Group("/v1/role/user")
+	general := app.Group("/v1/common")
+
+	general.Get("/product", handler.GetProducts)
+	general.Get("/product/:id", handler.GetProduct)
+
+	user := app.Group("/v1/user")
 	user.Use(middleware.ValidateJwt, middleware.UserRoleAuthentication)
 
-	user.Post("/order", handler.PlaceOrderHandler)
-	user.Get("/order", handler.GetOrdersHandler)
-	user.Get("/product/filter", handler.FilterProductsHandler)
-	user.Get("product", handler.GetProductsHandler)
-	user.Get("/product/:id", handler.GetProductHandler)
-	user.Patch("", handler.UpdateUserHandler)
-	user.Patch("/order/:id", handler.CancelOrderHandler)
+	user.Post("/order", handler.CreateOrder)
+	user.Get("/order", handler.GetOrders)
+	user.Get("/order/:id", handler.GetOrder)
+	user.Patch("", handler.UpdateUser)
+	user.Patch("/order/:id", handler.UpdateOrder)
 }

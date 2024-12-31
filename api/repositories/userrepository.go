@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"errors"
 	"shopping-site/pkg/loggers"
 	"shopping-site/pkg/models"
 	"shopping-site/utils/constants"
@@ -12,13 +13,13 @@ import (
 )
 
 type IUserRepository interface {
-	UpdateUserRepository(*models.Users) *dto.ErrorResponse
-	PlaceOrderRepository(uuid.UUID, models.Orders) (*models.Orders, *dto.ErrorResponse)
-	CancelOrderRepository(uuid.UUID, uuid.UUID) *dto.ErrorResponse
-	GetOrdersRepository(uuid.UUID) (*[]models.Orders, *dto.ErrorResponse)
-	GetProductsRepository(map[string]string, uuid.UUID) (*[]models.Products, *dto.ErrorResponse)
-	GetProductRepository(uuid.UUID, uuid.UUID) (*models.Products, *dto.ErrorResponse)
-	FilterProductsRepository(map[string]string) (*[]models.Products, *dto.ErrorResponse)
+	UpdateUser(*models.Users) *dto.ErrorResponse
+	PlaceOrder(uuid.UUID, models.Orders) (*models.Orders, *dto.ErrorResponse)
+	UpdateOrder(uuid.UUID, uuid.UUID) *dto.ErrorResponse
+	GetOrders(uuid.UUID, map[string]interface{}) (*[]models.Orders, int64, *dto.ErrorResponse)
+	GetOrder(uuid.UUID, uuid.UUID) (*models.Orders, *dto.ErrorResponse)
+	GetProducts(map[string]interface{}) (*[]models.Products, int64, *dto.ErrorResponse)
+	GetProduct(uuid.UUID) (*models.Products, *dto.ErrorResponse)
 }
 
 type userRepository struct {
@@ -29,7 +30,7 @@ func CommenceUserRepository(db *gorm.DB) IUserRepository {
 	return &userRepository{db}
 }
 
-func (db *userRepository) PlaceOrderRepository(userId uuid.UUID, order models.Orders) (*models.Orders, *dto.ErrorResponse) {
+func (db *userRepository) PlaceOrder(userId uuid.UUID, order models.Orders) (*models.Orders, *dto.ErrorResponse) {
 	var (
 		userDetails    models.Users
 		orderItems     []models.OrderedItems
@@ -37,27 +38,30 @@ func (db *userRepository) PlaceOrderRepository(userId uuid.UUID, order models.Or
 		totalAmount    float64
 	)
 
-	record := db.Where("address_id= ? AND user_id= ?", order.AddressId, userId).First(&addressDetails)
+	record := db.Where("address_id= ? AND user_id= ?", order.AddressID, userId).First(&addressDetails)
 	if record.Error != nil {
 		loggers.WarnLog.Println("specified address not avilable on user profile")
 		return nil, &dto.ErrorResponse{Status: fiber.StatusBadRequest,
-			Error: record.Error.Error()}
+			Error: "specified address not avilable on user profile"}
 	}
 
 	for _, item := range order.Products {
 		var productDetails models.Products
 
-		record = db.Where("product_id= ?", item.ProductId).First(&productDetails)
+		record = db.Where("product_id= ?", item.ProductID).First(&productDetails)
 		if record.Error != nil {
 			loggers.ErrorLog.Println("error while getting product details")
-			return nil, &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
+			return nil, &dto.ErrorResponse{Status: fiber.StatusBadRequest,
 				Error: record.Error.Error()}
 		}
 		itemAmount := productDetails.Price * float64(item.Quantity)
 		totalAmount += itemAmount
 
+		item.MerchantId = productDetails.UserID
 		item.ProductName = productDetails.ProductName
 		item.Price = productDetails.Price
+		item.AddressID = order.AddressID
+		item.CustomerID = userId
 
 		orderItems = append(orderItems, item)
 	}
@@ -68,110 +72,99 @@ func (db *userRepository) PlaceOrderRepository(userId uuid.UUID, order models.Or
 			Error: record.Error.Error()}
 	}
 
-	order.UserId = userId
+	order.UserID = userId
 	order.Name = userDetails.FirstName + " " + userDetails.LastName
 	order.Email = userDetails.Email
 	order.Phone = userDetails.Phone
-	order.Status = constants.Placed
+	order.Status = constants.Inprogress
 	order.TotalAmount = totalAmount
 	order.Products = orderItems
 
 	record = db.Create(&order)
 	if record.Error != nil {
-		return nil, &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
+		return nil, &dto.ErrorResponse{Status: fiber.StatusBadRequest,
 			Error: record.Error.Error()}
 	}
 
 	return &order, nil
 }
 
-func (db *userRepository) UpdateUserRepository(user *models.Users) *dto.ErrorResponse {
-	var userExcist models.Users
+func (db *userRepository) GetOrders(userId uuid.UUID, filters map[string]interface{}) (*[]models.Orders, int64, *dto.ErrorResponse) {
+	var (
+		orders []models.Orders
+		count  int64
+	)
 
-	record := db.Where("user_id = ? ", user.UserId).First(&userExcist)
-	if record.RowsAffected == 0 {
-		return &dto.ErrorResponse{Status: fiber.StatusNotFound,
-			Error: "user not found"}
+	fromDate := filters["from_date"].(string)
+	toDate := filters["to_date"].(string)
+	limit := filters["limit"].(int)
+	offset := filters["offset"].(int)
+
+	record := db.Preload("Products").Where("user_id = ?", userId).Limit(limit).Offset(offset).Find(&orders).Count(&count)
+	if errors.Is(record.Error, gorm.ErrRecordNotFound) {
+		return nil, 0, &dto.ErrorResponse{Status: fiber.StatusNotFound,
+			Error: "no orders avilable"}
 	}
 
-	record = db.Where("user_id = ?", user.UserId).Updates(models.Users{
-		FirstName: user.FirstName,
-		LastName:  user.LastName,
-		Email:     user.Email,
-		Phone:     user.Phone,
-		Password:  user.Password})
-	if record.Error != nil {
-		return &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
-			Error: record.Error.Error()}
-	} else if record.RowsAffected == 0 {
-		return &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
-			Error: "something went wrong"}
-	}
-
-	for _, data := range user.Address {
-		record = db.Where("address_id = ?", data.AddressId).Updates(models.Addresses{
-			DoorNo:  data.DoorNo,
-			Street:  data.Street,
-			City:    data.City,
-			State:   data.State,
-			ZipCode: data.ZipCode})
-		if record.Error != nil {
-			return &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
-				Error: record.Error.Error()}
-		} else if record.RowsAffected == 0 {
-			return &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
-				Error: "something went wrong"}
+	if fromDate != "" && toDate == "" {
+		record.Where("created_at >= ?", fromDate).Find(&orders).Count(&count)
+	} else if fromDate == "" && toDate != "" {
+		record.Where("created_at <= ?", toDate).Find(&orders).Count(&count)
+	} else if fromDate != "" && toDate != "" {
+		if fromDate > toDate {
+			{
+				return nil, 0, &dto.ErrorResponse{Status: fiber.StatusBadRequest,
+					Error: "from date exceeds to date"}
+			}
 		}
+
+		record.Where("created_at BETWEEN ? AND ?", fromDate, toDate).Find(&orders).Count(&count)
 	}
 
-	return nil
+	return &orders, count, nil
 }
 
-func (db *userRepository) CancelOrderRepository(userId uuid.UUID, orderId uuid.UUID) *dto.ErrorResponse {
+func (db *userRepository) GetOrder(userId uuid.UUID, orderId uuid.UUID) (*models.Orders, *dto.ErrorResponse) {
 	var order models.Orders
-	record := db.Where("order_id = ? AND user_id= ? ", orderId, userId).First(&order)
-	if record.RowsAffected == 0 {
-		return &dto.ErrorResponse{Status: fiber.StatusNotFound,
-			Error: "order not avilable"}
+
+	record := db.Preload("Products").Where("order_id= ? AND user_id= ?", orderId, userId).Find(&order)
+	if errors.Is(record.Error, gorm.ErrRecordNotFound) {
+		return nil, &dto.ErrorResponse{Status: fiber.StatusNotFound,
+			Error: "order not found on your list"}
 	}
 
-	record = db.Model(&order).Where("order_id = ?", orderId).Update("status", constants.Cancelled)
-	if record.RowsAffected == 0 {
-		return &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
-			Error: record.Error.Error()}
-	}
-
-	return nil
+	return &order, nil
 }
 
-func (db *userRepository) GetOrdersRepository(userId uuid.UUID) (*[]models.Orders, *dto.ErrorResponse) {
-	var orders []models.Orders
+func (db *userRepository) GetProducts(filter map[string]interface{}) (*[]models.Products, int64, *dto.ErrorResponse) {
+	var (
+		products []models.Products
+		count    int64
+	)
 
-	record := db.Preload("Products").Where("user_id= ?", userId).Find(&orders)
+	categoryName := filter["category_name"].(string)
+	brandName := filter["brand_name"].(string)
+	price := filter["price"].(float64)
+	rating := filter["rating"].(float32)
+	limit := filter["limit"].(int)
+	offset := filter["offset"].(int)
+
+	record := db.Raw(`SELECT * FROM getProducts_fn($1,$2,$3,$4,$5,$6,$7)`, nil, brandName, categoryName, price, rating, limit, offset).Find(&products)
 	if record.Error != nil {
-		return nil, &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
+		return nil, 0, &dto.ErrorResponse{Status: fiber.StatusBadRequest,
 			Error: record.Error.Error()}
 	}
 
-	return &orders, nil
-}
-
-func (db *userRepository) GetProductsRepository(filter map[string]string, userId uuid.UUID) (*[]models.Products, *dto.ErrorResponse) {
-	var products []models.Products
-
-	categoryName := filter["category_name"]
-	brandName := filter["brand_name"]
-
-	record := db.Raw(`SELECT * FROM getProductsUser_fn($1,$2)`, brandName, categoryName).Find(&products)
+	record = db.Raw(`SELECT count (*) FROM getProducts_fn($1,$2,$3,$4,$5,$6,$7)`, nil, brandName, categoryName, price, rating, limit, offset).Find(&count)
 	if record.Error != nil {
-		return nil, &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
+		return nil, 0, &dto.ErrorResponse{Status: fiber.StatusBadRequest,
 			Error: record.Error.Error()}
 	}
 
-	return &products, nil
+	return &products, count, nil
 }
 
-func (db *userRepository) GetProductRepository(userId uuid.UUID, productId uuid.UUID) (*models.Products, *dto.ErrorResponse) {
+func (db *userRepository) GetProduct(productId uuid.UUID) (*models.Products, *dto.ErrorResponse) {
 	var product models.Products
 
 	record := db.Where("product_id = ?", productId).First(&product)
@@ -183,23 +176,70 @@ func (db *userRepository) GetProductRepository(userId uuid.UUID, productId uuid.
 	return &product, nil
 }
 
-func (db *userRepository) FilterProductsRepository(filter map[string]string) (*[]models.Products, *dto.ErrorResponse) {
-	var products []models.Products
+func (db *userRepository) UpdateUser(user *models.Users) *dto.ErrorResponse {
+	var userExcist models.Users
 
-	price := filter["price"]
-	rating := filter["rating"]
-	if price == "" && rating == "" {
-		return nil, &dto.ErrorResponse{
-			Status: fiber.StatusBadRequest,
-			Error:  "filter keywords should not be empty",
+	record := db.Where("user_id = ? ", user.UserID).First(&userExcist)
+	if errors.Is(record.Error, gorm.ErrRecordNotFound) {
+		return &dto.ErrorResponse{Status: fiber.StatusNotFound,
+			Error: "user not found"}
+	}
+
+	record = db.Where("user_id = ?", user.UserID).Updates(models.Users{
+		FirstName: user.FirstName,
+		LastName:  user.LastName,
+		Email:     user.Email,
+		Phone:     user.Phone,
+		Password:  user.Password})
+	if record.Error != nil {
+		return &dto.ErrorResponse{Status: fiber.StatusBadRequest,
+			Error: record.Error.Error()}
+	} else if record.RowsAffected == 0 {
+		return &dto.ErrorResponse{Status: fiber.StatusNotModified,
+			Error: "user updation failed"}
+	}
+
+	for _, data := range user.Address {
+		var addressExcist models.Addresses
+
+		record = db.Where("address_id = ? AND user_id = ?", data.AddressID, user.UserID).First(&addressExcist)
+		if errors.Is(record.Error, gorm.ErrRecordNotFound) {
+			return &dto.ErrorResponse{Status: fiber.StatusBadRequest,
+				Error: "specified address not avilable"}
+		}
+
+		record = db.Where("address_id = ? AND user_id = ?", data.AddressID, user.UserID).Updates(models.Addresses{
+			DoorNo:  data.DoorNo,
+			Street:  data.Street,
+			City:    data.City,
+			State:   data.State,
+			ZipCode: data.ZipCode})
+
+		if record.Error != nil {
+			return &dto.ErrorResponse{Status: fiber.StatusBadRequest,
+				Error: record.Error.Error()}
+		} else if record.RowsAffected == 0 {
+			return &dto.ErrorResponse{Status: fiber.StatusNotModified,
+				Error: "address updation failed"}
 		}
 	}
 
-	record := db.Raw(`SELECT * FROM filterProductsUser_fn($1,$2)`, price, rating).Find(&products)
-	if record.Error != nil {
-		return nil, &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
+	return nil
+}
+
+func (db *userRepository) UpdateOrder(userId uuid.UUID, orderId uuid.UUID) *dto.ErrorResponse {
+	var order models.Orders
+	record := db.Where("order_id = ? AND user_id= ? ", orderId, userId).First(&order)
+	if record.RowsAffected == 0 {
+		return &dto.ErrorResponse{Status: fiber.StatusNotFound,
+			Error: "order not avilable"}
+	}
+
+	record = db.Model(&order).Where("order_id = ?", orderId).Update("status", constants.Cancelled)
+	if record.RowsAffected == 0 {
+		return &dto.ErrorResponse{Status: fiber.StatusBadRequest,
 			Error: record.Error.Error()}
 	}
 
-	return &products, nil
+	return nil
 }

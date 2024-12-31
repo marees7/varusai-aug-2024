@@ -10,17 +10,17 @@ import (
 	"gorm.io/gorm"
 )
 
-func AdminRoute(app *fiber.App, db *gorm.DB) {
+func Admin(app *fiber.App, db *gorm.DB) {
 	adminRepository := repositories.CommenceAdminRepository(db)
 
 	adminService := services.CommenceAdminService(adminRepository)
 
 	handler := handlers.AdminHandler{IAdminService: adminService}
 
-	user := app.Group("/v1/role/admin")
+	user := app.Group("/v1/admin")
 	user.Use(middleware.ValidateJwt, middleware.AdminRoleAuthentication)
 
-	user.Post("/category", handler.AddCategoreyHandler)
-	user.Post("/brand", handler.AddBrandHandler)
+	user.Post("/category", handler.CreateCategorey)
+	user.Post("/brand", handler.CreateBrand)
 
 }

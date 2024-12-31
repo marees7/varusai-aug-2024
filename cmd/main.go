@@ -21,7 +21,7 @@ func main() {
 	app := fiber.New()
 	routers.RequiredRoute(app, db)
 
-	err := app.Listen(os.Getenv("CLIENTPORT"))
+	err := app.Listen(os.Getenv("PORT"))
 	if err != nil {
 		loggers.FatalLog.Fatal(err)
 	}

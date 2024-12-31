@@ -9,8 +9,8 @@ import (
 )
 
 type IAdminRepository interface {
-	AddCategoreyRepository(*models.Categories) *dto.ErrorResponse
-	AddBrandRepository(*models.Brands) *dto.ErrorResponse
+	CreateCategory(*models.Categories) *dto.ErrorResponse
+	CreateBrand(*models.Brands) *dto.ErrorResponse
 }
 
 type adminRepository struct {
@@ -21,7 +21,7 @@ func CommenceAdminRepository(db *gorm.DB) IAdminRepository {
 	return &adminRepository{db}
 }
 
-func (db *adminRepository) AddCategoreyRepository(category *models.Categories) *dto.ErrorResponse {
+func (db *adminRepository) CreateCategory(category *models.Categories) *dto.ErrorResponse {
 	record := db.Where("category_name = ?", category.CategoryName).First(category)
 	if record.RowsAffected > 0 {
 		return &dto.ErrorResponse{Status: fiber.StatusConflict,
@@ -30,14 +30,14 @@ func (db *adminRepository) AddCategoreyRepository(category *models.Categories) *
 
 	record = db.Create(category)
 	if record.Error != nil {
-		return &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
+		return &dto.ErrorResponse{Status: fiber.StatusBadRequest,
 			Error: record.Error.Error()}
 	}
 
 	return nil
 }
 
-func (db *adminRepository) AddBrandRepository(brand *models.Brands) *dto.ErrorResponse {
+func (db *adminRepository) CreateBrand(brand *models.Brands) *dto.ErrorResponse {
 	record := db.Where("category_name = ?", brand.BrandName).First(brand)
 	if record.RowsAffected > 0 {
 		return &dto.ErrorResponse{Status: fiber.StatusConflict,
@@ -46,7 +46,7 @@ func (db *adminRepository) AddBrandRepository(brand *models.Brands) *dto.ErrorRe
 
 	record = db.Create(brand)
 	if record.Error != nil {
-		return &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
+		return &dto.ErrorResponse{Status: fiber.StatusBadRequest,
 			Error: record.Error.Error()}
 	}
 

@@ -17,7 +17,7 @@ type AuthHandler struct {
 	services.IAuthService
 }
 
-func (handler *AuthHandler) SignupHandler(ctx *fiber.Ctx) error {
+func (handler *AuthHandler) Signup(ctx *fiber.Ctx) error {
 	var user models.Users
 
 	if err := ctx.BodyParser(&user); err != nil {
@@ -32,7 +32,7 @@ func (handler *AuthHandler) SignupHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	if err := handler.IAuthService.SignUpService(user); err != nil {
+	if err := handler.IAuthService.SignUp(user); err != nil {
 		loggers.ErrorLog.Println(err.Error)
 		return ctx.Status(err.Status).JSON(dto.ResponseJson{Error: err.Error})
 	}
@@ -41,7 +41,7 @@ func (handler *AuthHandler) SignupHandler(ctx *fiber.Ctx) error {
 		Message: "user created successfully"})
 }
 
-func (handler *AuthHandler) LoginHandler(ctx *fiber.Ctx) error {
+func (handler *AuthHandler) Login(ctx *fiber.Ctx) error {
 	var loginRequest dto.LoginRequest
 
 	if err := ctx.BodyParser(&loginRequest); err != nil {
@@ -56,14 +56,14 @@ func (handler *AuthHandler) LoginHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	user, errResponse := handler.IAuthService.LoginService(loginRequest)
+	user, errResponse := handler.IAuthService.Login(loginRequest)
 	if errResponse != nil {
 		loggers.ErrorLog.Println(errResponse.Error)
 		return ctx.Status(errResponse.Status).JSON(dto.ResponseJson{Error: errResponse.Error})
 	}
 
 	claims := &dto.JWTClaims{
-		UserID: user.UserId,
+		UserID: user.UserID,
 		Email:  user.Email,
 		Role:   user.Role,
 		RegisteredClaims: jwt.RegisteredClaims{

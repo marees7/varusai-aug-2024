@@ -9,13 +9,13 @@ import (
 	"gorm.io/gorm"
 )
 
-func AuthRoute(app *fiber.App, db *gorm.DB) {
+func Auth(app *fiber.App, db *gorm.DB) {
 	authRepository := repositories.CommenceAuthRepository(db)
 
 	authService := services.CommenceAuthService(authRepository)
 
 	handler := handlers.AuthHandler{IAuthService: authService}
 
-	app.Post("/signup", handler.SignupHandler)
-	app.Post("/login", handler.LoginHandler)
+	app.Post("/signup", handler.Signup)
+	app.Post("/login", handler.Login)
 }

@@ -13,7 +13,7 @@ type AdminHandler struct {
 	services.IAdminService
 }
 
-func (service *AdminHandler) AddCategoreyHandler(ctx *fiber.Ctx) error {
+func (service *AdminHandler) CreateCategorey(ctx *fiber.Ctx) error {
 	var category models.Categories
 
 	if err := ctx.BodyParser(&category); err != nil {
@@ -23,7 +23,7 @@ func (service *AdminHandler) AddCategoreyHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	errResponse := service.IAdminService.AddCategoreyService(&category)
+	errResponse := service.IAdminService.CreateCategorey(&category)
 	if errResponse != nil {
 		return ctx.Status(errResponse.Status).JSON(dto.ResponseJson{
 			Error: errResponse.Error,
@@ -36,7 +36,7 @@ func (service *AdminHandler) AddCategoreyHandler(ctx *fiber.Ctx) error {
 	})
 }
 
-func (service *AdminHandler) AddBrandHandler(ctx *fiber.Ctx) error {
+func (service *AdminHandler) CreateBrand(ctx *fiber.Ctx) error {
 	var brand models.Brands
 
 	if err := ctx.BodyParser(&brand); err != nil {
@@ -46,7 +46,7 @@ func (service *AdminHandler) AddBrandHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	errResponse := service.IAdminService.AddBrandService(&brand)
+	errResponse := service.IAdminService.CreateBrand(&brand)
 	if errResponse != nil {
 		return ctx.Status(errResponse.Status).JSON(dto.ResponseJson{
 			Error: errResponse.Error,

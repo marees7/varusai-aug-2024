@@ -7,8 +7,8 @@ import (
 )
 
 type IAdminService interface {
-	AddCategoreyService(*models.Categories) *dto.ErrorResponse
-	AddBrandService(*models.Brands) *dto.ErrorResponse
+	CreateCategorey(*models.Categories) *dto.ErrorResponse
+	CreateBrand(*models.Brands) *dto.ErrorResponse
 }
 
 type adminService struct {
@@ -19,10 +19,10 @@ func CommenceAdminService(admin repositories.IAdminRepository) IAdminService {
 	return &adminService{admin}
 }
 
-func (repo *adminService) AddCategoreyService(category *models.Categories) *dto.ErrorResponse {
-	return repo.AddCategoreyRepository(category)
+func (repo *adminService) CreateCategorey(category *models.Categories) *dto.ErrorResponse {
+	return repo.IAdminRepository.CreateCategory(category)
 }
 
-func (repo *adminService) AddBrandService(brand *models.Brands) *dto.ErrorResponse {
-	return repo.AddBrandRepository(brand)
+func (repo *adminService) CreateBrand(brand *models.Brands) *dto.ErrorResponse {
+	return repo.IAdminRepository.CreateBrand(brand)
 }

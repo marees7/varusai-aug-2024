@@ -6,8 +6,8 @@ import (
 )
 
 func RequiredRoute(app *fiber.App, db *gorm.DB) {
-	AuthRoute(app, db)
-	AdminRoute(app, db)
-	UserRoute(app, db)
-	MerchantRoute(app, db)
+	Auth(app, db)
+	Admin(app, db)
+	User(app, db)
+	Merchant(app, db)
 }
