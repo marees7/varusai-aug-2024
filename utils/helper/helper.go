@@ -8,6 +8,7 @@ import (
 	"github.com/google/uuid"
 )
 
+// parse the string to uuid
 func PasreUuid(id string) (uuid.UUID, error) {
 	ParsedId, err := uuid.Parse(id)
 	if err != nil {
@@ -18,6 +19,7 @@ func PasreUuid(id string) (uuid.UUID, error) {
 	return ParsedId, nil
 }
 
+// convert the limit and offset string to int and calculate offset using it
 func Pagination(limitStr string, offsetStr string) (int, int, error) {
 	offset, err := strconv.Atoi(offsetStr)
 	if offsetStr == "" {

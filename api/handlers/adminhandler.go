@@ -13,6 +13,21 @@ type AdminHandler struct {
 	services.IAdminService
 }
 
+// create new category
+//
+//	@Summary		Create category
+//	@Description	Create a new category
+//	@ID				create_category
+//	@Tags			Admin
+//	@Accept			json
+//	@Produce		json
+//	@Security 	    JWT
+//	@Param			Category details	body		models.Categories	true	"Enter category details"
+//	@Success		200		{object}	dto.ResponseJson
+//	@Failure		400		{object}	dto.ResponseJson
+//	@Failure		409		{object}	dto.ResponseJson
+//	@Failure		404		{object}	dto.ResponseJson
+//	@Router	 		/admin/category [post]
 func (service *AdminHandler) CreateCategorey(ctx *fiber.Ctx) error {
 	var category models.Categories
 
@@ -23,6 +38,7 @@ func (service *AdminHandler) CreateCategorey(ctx *fiber.Ctx) error {
 		})
 	}
 
+	// call create category service
 	errResponse := service.IAdminService.CreateCategorey(&category)
 	if errResponse != nil {
 		return ctx.Status(errResponse.Status).JSON(dto.ResponseJson{
@@ -36,6 +52,21 @@ func (service *AdminHandler) CreateCategorey(ctx *fiber.Ctx) error {
 	})
 }
 
+// create new brand
+//
+//	@Summary		Create brand
+//	@Description	Create a new brand
+//	@ID				create_brand
+//	@Tags			Admin
+//	@Accept			json
+//	@Produce		json
+//	@Security 	    JWT
+//	@Param			Login	body		models.Brands	true	"Enter brand details"
+//	@Success		200		{object}	dto.ResponseJson
+//	@Failure		400		{object}	dto.ResponseJson
+//	@Failure		409		{object}	dto.ResponseJson
+//	@Failure		404		{object}	dto.ResponseJson
+//	@Router			/admin/brand [post]
 func (service *AdminHandler) CreateBrand(ctx *fiber.Ctx) error {
 	var brand models.Brands
 
@@ -46,6 +77,7 @@ func (service *AdminHandler) CreateBrand(ctx *fiber.Ctx) error {
 		})
 	}
 
+	// call create brand service
 	errResponse := service.IAdminService.CreateBrand(&brand)
 	if errResponse != nil {
 		return ctx.Status(errResponse.Status).JSON(dto.ResponseJson{

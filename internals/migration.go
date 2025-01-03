@@ -8,6 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// migrate models for tables
 func SchemaMigration(db *gorm.DB) {
 	err := db.AutoMigrate(&models.Users{}, &models.Addresses{}, &models.Categories{}, &models.Brands{}, &models.Products{}, &models.Orders{}, &models.OrderedItems{})
 	if err != nil {

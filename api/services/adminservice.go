@@ -19,10 +19,12 @@ func CommenceAdminService(admin repositories.IAdminRepository) IAdminService {
 	return &adminService{admin}
 }
 
+// create category
 func (repo *adminService) CreateCategorey(category *models.Categories) *dto.ErrorResponse {
 	return repo.IAdminRepository.CreateCategory(category)
 }
 
+// create brand
 func (repo *adminService) CreateBrand(brand *models.Brands) *dto.ErrorResponse {
 	return repo.IAdminRepository.CreateBrand(brand)
 }

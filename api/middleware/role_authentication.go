@@ -48,14 +48,14 @@ func UserRoleAuthentication(ctx *fiber.Ctx) error {
 	role := ctx.Locals("role")
 	if role == "" {
 		loggers.ErrorLog.Println("role authentication is empty")
-		return ctx.Status(fiber.StatusInternalServerError).JSON(dto.ResponseJson{
+		return ctx.Status(fiber.StatusBadRequest).JSON(dto.ResponseJson{
 			Error: "something went wrong",
 		})
 	}
 
 	if role != constants.UserRole {
 		loggers.ErrorLog.Println("insufficient permission")
-		return ctx.Status(fiber.StatusUnauthorized).JSON(dto.ResponseJson{
+		return ctx.Status(fiber.StatusForbidden).JSON(dto.ResponseJson{
 			Error: "insuffisient permission",
 		})
 	}

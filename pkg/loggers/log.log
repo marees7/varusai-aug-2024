@@ -1,0 +1,210 @@
+ERROR:2024/12/31 20:07:33 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:67: email does not excist
+INFO:2024/12/31 20:07:42 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2024/12/31 20:07:42 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+ERROR:2024/12/31 20:07:45 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:67: email does not exist
+INFO:2024/12/31 20:10:04 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2024/12/31 20:10:04 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+INFO:2024/12/31 20:24:23 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2024/12/31 20:24:24 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+WARNING:2024/12/31 20:25:07 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:32: password length is below or above the limit
+WARNING:2024/12/31 20:25:14 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:32: weak password.include any upper case character
+WARNING:2024/12/31 20:25:28 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:32: password length is below or above the limit
+WARNING:2024/12/31 20:25:38 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:32: weak password.include any upper case character
+WARNING:2024/12/31 20:25:47 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:32: weak password.include any digit
+WARNING:2024/12/31 20:26:03 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:32: unauthorized role name
+ERROR:2024/12/31 20:26:51 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:68: email does not exist
+INFO:2024/12/31 20:36:05 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2024/12/31 20:36:05 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+ERROR:2024/12/31 20:36:37 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/role_authentication.go:39: insufficient permission
+WARNING:2024/12/31 20:37:06 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/merchanthandler.go:23: invalid UUID length: 35
+INFO:2025/01/02 11:08:16 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 11:08:16 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+INFO:2025/01/02 11:10:35 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 11:10:35 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+INFO:2025/01/02 11:12:34 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 11:12:34 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+INFO:2025/01/02 11:15:23 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 11:15:23 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+INFO:2025/01/02 11:15:48 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 11:15:48 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+ERROR:2025/01/02 11:17:49 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/role_authentication.go:21: insufficient permission
+ERROR:2025/01/02 11:19:03 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/role_authentication.go:21: insufficient permission
+ERROR:2025/01/02 11:20:51 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/role_authentication.go:39: insufficient permission
+INFO:2025/01/02 11:50:09 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 11:50:10 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+ERROR:2025/01/02 11:53:04 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:68: email does not exist
+INFO:2025/01/02 12:33:00 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 12:33:01 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+INFO:2025/01/02 12:35:09 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 12:35:09 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+WARNING:2025/01/02 12:35:46 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:18: Login required to proceed
+WARNING:2025/01/02 12:35:52 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:18: Login required to proceed
+WARNING:2025/01/02 12:38:17 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:18: Login required to proceed
+INFO:2025/01/02 12:39:01 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 12:39:01 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+WARNING:2025/01/02 12:39:07 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:19: Login required to proceed
+INFO:2025/01/02 12:39:54 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 12:39:54 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+WARNING:2025/01/02 12:40:00 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:19: Login required to proceed
+INFO:2025/01/02 12:40:12 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 12:40:12 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+WARNING:2025/01/02 12:40:20 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:19: Login required to proceed
+INFO:2025/01/02 12:40:52 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 12:40:52 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+WARNING:2025/01/02 12:40:55 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:19: Login required to proceed
+INFO:2025/01/02 12:41:07 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 12:41:07 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+INFO:2025/01/02 12:43:59 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 12:43:59 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+INFO:2025/01/02 13:02:18 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:20: Connected to postgress client
+INFO:2025/01/02 13:02:18 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:17: Migration Completed
+WARNING:2025/01/02 13:11:33 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:19: Login required to proceed
+INFO:2025/01/02 16:59:06 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 16:59:06 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 17:28:41 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 17:28:41 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 17:30:11 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 17:30:11 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 17:33:19 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 17:33:19 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+WARNING:2025/01/02 17:35:06 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:32: weak password.include any upper case character
+WARNING:2025/01/02 17:35:17 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:32: password length is below or above the limit
+WARNING:2025/01/02 17:35:23 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:32: weak password.include any special character
+WARNING:2025/01/02 17:35:34 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:32: weak password.include any digit
+INFO:2025/01/02 17:45:53 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 17:45:53 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 17:52:15 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 17:52:15 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 17:53:17 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 17:53:17 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 17:55:14 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 17:55:14 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+WARNING:2025/01/02 17:57:45 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:18: Login required to proceed
+WARNING:2025/01/02 18:14:57 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:18: Login required to proceed
+WARNING:2025/01/02 18:16:48 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/repositories/userrepository.go:45: specified address not avilable on user profile
+ERROR:2025/01/02 18:18:37 C:/Project/MithrasoftExercises/golang/shopping_site/rte/utils/helper/helper.go:15: invalid UUID length: 42
+INFO:2025/01/02 18:20:03 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:20:03 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 18:24:54 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:24:54 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 18:26:32 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:26:33 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 18:27:28 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:27:29 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 18:27:54 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:27:55 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 18:28:06 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:28:06 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 18:28:25 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:28:25 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 18:29:05 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:29:05 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 18:29:35 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:29:35 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 18:30:43 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:30:44 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+WARNING:2025/01/02 18:38:15 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/repositories/userrepository.go:45: specified address not avilable on user profile
+ERROR:2025/01/02 18:48:03 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:68: email does not exist
+ERROR:2025/01/02 18:48:32 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:40: duplicated key not allowed
+ERROR:2025/01/02 18:49:45 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:40: user already exists
+INFO:2025/01/02 18:58:03 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:58:03 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+ERROR:2025/01/02 18:58:08 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:40: merchantalready exists
+INFO:2025/01/02 18:58:22 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 18:58:22 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+ERROR:2025/01/02 18:58:26 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:40: merchant already exists
+ERROR:2025/01/02 18:58:36 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:40: merchant already exists
+ERROR:2025/01/02 18:58:51 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:40: admin already exists
+INFO:2025/01/02 19:01:58 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:01:58 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+WARNING:2025/01/02 19:02:44 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/services/merchantservice.go:115: insufficient permission to update specific status
+INFO:2025/01/02 19:03:30 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:03:30 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+WARNING:2025/01/02 19:03:35 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/services/merchantservice.go:117: insufficient permission to update specific status
+INFO:2025/01/02 19:04:50 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:04:51 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:05:37 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:05:37 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:11:22 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:11:23 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:11:41 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:11:41 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:13:20 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:13:20 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:13:37 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:13:37 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:33:01 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:33:01 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:33:41 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:33:41 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:34:01 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:34:02 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:44:45 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:44:46 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:46:57 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:46:57 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:47:07 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:47:07 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:54:32 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:54:33 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/02 19:57:17 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/02 19:57:17 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 10:31:48 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 10:31:48 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 10:36:28 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 10:36:28 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+ERROR:2025/01/03 10:40:07 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:91: email does not exist
+INFO:2025/01/03 10:45:20 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 10:45:20 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 10:47:44 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 10:47:44 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 10:48:46 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 10:48:47 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 10:51:07 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 10:51:07 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 10:51:20 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 10:51:21 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 10:51:54 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 10:51:54 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 10:56:12 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 10:56:12 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+ERROR:2025/01/03 10:57:19 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:95: invalid password
+ERROR:2025/01/03 10:58:05 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/authhandler.go:95: invalid password
+INFO:2025/01/03 11:30:15 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 11:30:15 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 11:32:09 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 11:32:09 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 11:35:11 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 11:35:11 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 11:48:06 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 11:48:06 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+WARNING:2025/01/03 11:48:54 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:18: Login required to proceed
+WARNING:2025/01/03 11:49:51 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/adminhandler.go:74: invalid UUID length: 6
+INFO:2025/01/03 11:52:07 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 11:52:07 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 13:01:57 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 13:01:57 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+WARNING:2025/01/03 13:03:45 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:33: token has invalid claims: token is expired
+INFO:2025/01/03 13:07:17 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 13:07:17 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 13:08:59 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 13:08:59 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 13:13:20 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 13:13:20 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 13:44:58 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 13:44:58 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+INFO:2025/01/03 13:46:28 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 13:46:28 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+WARNING:2025/01/03 13:46:50 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:18: Login required to proceed
+WARNING:2025/01/03 13:46:56 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:18: Login required to proceed
+INFO:2025/01/03 13:50:33 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 13:50:33 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+WARNING:2025/01/03 13:51:09 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/userhandler.go:287: invalid UUID length: 6
+WARNING:2025/01/03 13:51:20 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/userhandler.go:287: invalid UUID length: 6
+INFO:2025/01/03 14:00:12 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 14:00:12 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed
+WARNING:2025/01/03 14:01:38 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:33: token has invalid claims: token is expired
+WARNING:2025/01/03 14:02:24 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/handlers/adminhandler.go:74: invalid UUID length: 6
+WARNING:2025/01/03 15:25:52 C:/Project/MithrasoftExercises/golang/shopping_site/rte/api/middleware/auth_token.go:33: token has invalid claims: token is expired
+INFO:2025/01/03 15:28:27 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/connection.go:21: Connected to postgress client
+INFO:2025/01/03 15:28:27 C:/Project/MithrasoftExercises/golang/shopping_site/rte/internals/migration.go:18: Migration Completed

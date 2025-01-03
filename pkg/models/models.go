@@ -8,12 +8,14 @@ import (
 	"gorm.io/gorm"
 )
 
+// base model details
 type Base struct {
 	CreatedAt time.Time      `json:"created_at,omitempty" gorm:"autoCreateTime"`
 	UpdatedAt time.Time      `json:"updated_at,omitempty" gorm:"autoUpdateTime"`
 	DeletedAt gorm.DeletedAt `json:"-"`
 }
 
+// user details
 type Users struct {
 	UserID     uuid.UUID   `json:"user_id,omitempty" gorm:"type:uuid;primaryKey"`
 	FirstName  string      `json:"first_name,omitempty" gorm:"not null"`
@@ -29,6 +31,7 @@ type Users struct {
 	Base
 }
 
+// address details
 type Addresses struct {
 	AddressID uuid.UUID `json:"address_id,omitempty" gorm:"type:uuid;primaryKey;not null"`
 	DoorNo    string    `json:"door_no,omitempty" gorm:"not null"`
@@ -40,18 +43,21 @@ type Addresses struct {
 	Order     Orders    `json:"-" gorm:"foreignKey:AddressID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 }
 
+// category details
 type Categories struct {
 	CategoryID   uuid.UUID  `json:"category_id,omitempty" gorm:"type:uuid;primaryKey"`
 	CategoryName string     `json:"category_name,omitempty" gorm:"not null"`
-	Product      []Products `json:"product,omitempty" gorm:"foreignKey:CategoryID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
+	Product      []Products `json:"-" gorm:"foreignKey:CategoryID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 }
 
+// brand details
 type Brands struct {
 	BrandID   uuid.UUID  `json:"brand_id,omitempty" gorm:"type:uuid;primaryKey"`
 	BrandName string     `json:"brand_name,omitempty" gorm:"not null"`
-	Product   []Products `json:"product,omitempty" gorm:"foreignKey:BrandID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
+	Product   []Products `json:"-" gorm:"foreignKey:BrandID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 }
 
+// product details
 type Products struct {
 	ProductID   uuid.UUID `json:"product_id,omitempty" gorm:"type:uuid;primaryKey;not null"`
 	ProductName string    `json:"product_name,omitempty" gorm:"not null"`
@@ -63,6 +69,7 @@ type Products struct {
 	IsApproved  bool      `json:"is_Approved,omitempty" gorm:"not null"`
 }
 
+// order details
 type Orders struct {
 	OrderID     uuid.UUID      `json:"ordered_id,omitempty" gorm:"type:uuid;primaryKey"`
 	UserID      uuid.UUID      `json:"user_id,omitempty" gorm:"not null"`
@@ -76,6 +83,7 @@ type Orders struct {
 	CreatedAt   time.Time      `json:"created_at,omitempty" gorm:"autoCreateTime"`
 }
 
+// order items details
 type OrderedItems struct {
 	OrderedItemsID uuid.UUID `json:"ordered_items_id,omitempty" gorm:"type:uuid;primaryKey"`
 	ProductID      uuid.UUID `json:"product_id,omitempty" gorm:"not null"`
@@ -90,48 +98,49 @@ type OrderedItems struct {
 	CreatedAt      time.Time `json:"created_at,omitempty"`
 }
 
+// hooks for uuid generation
 func (user *Users) BeforeCreate(tx *gorm.DB) error {
 	user.UserID = uuid.New()
 	return nil
 }
 
+// hooks for uuid generation
 func (address *Addresses) BeforeCreate(tx *gorm.DB) error {
 	address.AddressID = uuid.New()
 	return nil
 }
 
+// hooks for uuid generation
 func (categories *Categories) BeforeCreate(tx *gorm.DB) error {
 	categories.CategoryID = uuid.New()
 	return nil
 }
 
+// hooks for uuid generation
 func (brand *Brands) BeforeCreate(tx *gorm.DB) error {
 	brand.BrandID = uuid.New()
 	return nil
 }
 
+// hooks for uuid generation
 func (product *Products) BeforeCreate(tx *gorm.DB) error {
 	product.ProductID = uuid.New()
 	return nil
 }
 
+// hooks for uuid generation
 func (order *Orders) BeforeCreate(tx *gorm.DB) error {
 	order.OrderID = uuid.New()
 	return nil
 }
 
+// hooks for uuid generation
 func (orderItem *OrderedItems) BeforeCreate(tx *gorm.DB) error {
 	orderItem.OrderedItemsID = uuid.New()
 	return nil
 }
 
-func (order *Orders) AfterUpdate(tx *gorm.DB) error {
-	if order.Status == constants.Cancelled {
-		tx.Model(&OrderedItems{}).Where("order_id = ?", order.OrderID).Update("status", constants.Cancelled)
-	}
-	return nil
-}
-
+// hooks to update order items status and created time  whent status updated on orders table
 func (order *Orders) AfterCreate(tx *gorm.DB) error {
 	if order.Status == constants.Inprogress {
 		tx.Model(&OrderedItems{}).Where("order_id = ?", order.OrderID).Update("status", constants.Placed)
@@ -139,6 +148,14 @@ func (order *Orders) AfterCreate(tx *gorm.DB) error {
 
 	if !order.CreatedAt.IsZero() {
 		tx.Model(&OrderedItems{}).Where("order_id = ?", order.OrderID).Update("created_at", order.CreatedAt)
+	}
+	return nil
+}
+
+// hooks to update order items status whent status updates on orders table
+func (order *Orders) AfterUpdate(tx *gorm.DB) error {
+	if order.Status == constants.Cancelled {
+		tx.Model(&OrderedItems{}).Where("order_id = ?", order.OrderID).Update("status", constants.Cancelled)
 	}
 	return nil
 }

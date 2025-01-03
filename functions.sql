@@ -1,5 +1,5 @@
 
---Get products for merchant
+--Get products based on filters
 CREATE OR REPLACE FUNCTION getProducts_fn(
     userId uuid,
     brandName text,
@@ -85,5 +85,4 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-select * from getProducts_fn(null,'xiomi','',0,0,10,0)
 

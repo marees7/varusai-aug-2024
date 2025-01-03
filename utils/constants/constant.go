@@ -1,5 +1,6 @@
 package constants
 
+// constant variable to be used
 const (
 	OffsetDefault int = 1
 	LimitDefault  int = 10

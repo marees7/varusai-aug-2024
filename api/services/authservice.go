@@ -23,7 +23,9 @@ func CommenceAuthService(auth repositories.IAuthRepository) IAuthService {
 	return &authService{auth}
 }
 
+// signup new member
 func (authRepo *authService) SignUp(user models.Users) *dto.ErrorResponse {
+	// hash the user password
 	hashedPin, err := bcrypt.GenerateFromPassword([]byte(user.Password), 8)
 	if err != nil {
 		loggers.ErrorLog.Println("Password generation error")
@@ -33,6 +35,7 @@ func (authRepo *authService) SignUp(user models.Users) *dto.ErrorResponse {
 	}
 
 	user.Password = string(hashedPin)
+	// call signup repository
 	if err := authRepo.IAuthRepository.SignUp(user); err != nil {
 		return err
 	}
@@ -40,12 +43,15 @@ func (authRepo *authService) SignUp(user models.Users) *dto.ErrorResponse {
 	return nil
 }
 
+// login new member
 func (authRepo *authService) Login(loginRequest dto.LoginRequest) (*models.Users, *dto.ErrorResponse) {
+	// call login repository and get user credentials
 	user, err := authRepo.IAuthRepository.Login(loginRequest)
 	if err != nil {
 		return nil, err
 	}
 
+	// compare the hashed password from db
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(loginRequest.Password)); err != nil {
 		return nil, &dto.ErrorResponse{
 			Status: http.StatusBadRequest,
