@@ -9,6 +9,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// initiate the connection with db
 func InitiatePgConnection() *gorm.DB {
 	dsn := fmt.Sprintf("user=%s password=%s host=%s port=%s dbname=%s sslmode=disable", os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_HOST"), os.Getenv("DB_PORT"), os.Getenv("DB_NAME"))
 

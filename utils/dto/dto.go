@@ -6,9 +6,12 @@ import (
 )
 
 type ResponseJson struct {
-	Message string      `json:"message,omitempty"`
-	Data    interface{} `json:"data,omitempty"`
-	Error   string      `json:"error,omitempty"`
+	Message      string      `json:"message,omitempty"`
+	Data         interface{} `json:"data,omitempty"`
+	Error        string      `json:"error,omitempty"`
+	TotalRecords int64       `json:"total_records,omitempty"`
+	Limit        int         `json:"limit,omitempty"`
+	Offset       int         `json:"offset,omitempty"`
 }
 
 type ErrorResponse struct {

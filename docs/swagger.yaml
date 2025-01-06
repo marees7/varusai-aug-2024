@@ -1,0 +1,1064 @@
+basePath: /v1
+definitions:
+  dto.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  dto.ResponseJson:
+    properties:
+      data: {}
+      error:
+        type: string
+      limit:
+        type: integer
+      message:
+        type: string
+      offset:
+        type: integer
+      total_records:
+        type: integer
+    type: object
+  models.Addresses:
+    properties:
+      address_id:
+        type: string
+      city:
+        type: string
+      door_no:
+        type: string
+      state:
+        type: string
+      street:
+        type: string
+      user_id:
+        type: string
+      zip_code:
+        type: integer
+    type: object
+  models.Brands:
+    properties:
+      brand_id:
+        type: string
+      brand_name:
+        type: string
+    type: object
+  models.Categories:
+    properties:
+      category_id:
+        type: string
+      category_name:
+        type: string
+    type: object
+  models.OrderedItems:
+    properties:
+      address_id:
+        type: string
+      created_at:
+        type: string
+      customer_id:
+        type: string
+      merchant_id:
+        type: string
+      order_id:
+        type: string
+      ordered_items_id:
+        type: string
+      price:
+        type: number
+      product_id:
+        type: string
+      product_name:
+        type: string
+      quantity:
+        type: integer
+      status:
+        type: string
+    type: object
+  models.Orders:
+    properties:
+      address_id:
+        type: string
+      created_at:
+        type: string
+      first_name:
+        type: string
+      name:
+        type: string
+      ordered_id:
+        type: string
+      phone:
+        type: string
+      products:
+        items:
+          $ref: '#/definitions/models.OrderedItems'
+        type: array
+      status:
+        type: string
+      total_amount:
+        type: number
+      user_id:
+        type: string
+    type: object
+  models.Products:
+    properties:
+      brand_id:
+        type: string
+      category_id:
+        type: string
+      is_Approved:
+        type: boolean
+      price:
+        type: number
+      product_id:
+        type: string
+      product_name:
+        type: string
+      rating:
+        type: number
+      user_id:
+        type: string
+    type: object
+  models.Users:
+    properties:
+      address:
+        items:
+          $ref: '#/definitions/models.Addresses'
+        type: array
+      created_at:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      is_verified:
+        type: boolean
+      last_name:
+        type: string
+      order:
+        items:
+          $ref: '#/definitions/models.Orders'
+        type: array
+      password:
+        type: string
+      phone:
+        type: string
+      product:
+        items:
+          $ref: '#/definitions/models.Products'
+        type: array
+      role:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: varusi0605@gmail.com
+    name: varusai
+  description: It's an basic ecommerce site where you can view products and order
+    any product. Then also you can be a seller by listing your product and also admin
+  license:
+    url: https://github.com/marees7/varusai-aug-2024
+  title: Shopping-site API
+  version: "1.0"
+paths:
+  /admin/brand:
+    post:
+      consumes:
+      - application/json
+      description: Create a new brand
+      operationId: create_brand
+      parameters:
+      - description: Enter brand details
+        in: body
+        name: Login
+        required: true
+        schema:
+          $ref: '#/definitions/models.Brands'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Create brand
+      tags:
+      - Admin
+  /admin/category:
+    post:
+      consumes:
+      - application/json
+      description: Create a new category
+      operationId: create_category
+      parameters:
+      - description: Enter category details
+        in: body
+        name: details
+        required: true
+        schema:
+          $ref: '#/definitions/models.Categories'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Create category
+      tags:
+      - Admin
+  /common/product:
+    get:
+      description: Get all products
+      operationId: get_products
+      parameters:
+      - description: Enter limit
+        in: query
+        name: limit
+        type: string
+      - description: Enter offset
+        in: query
+        name: offset
+        type: string
+      - description: Enter category_name
+        in: query
+        name: category_name
+        type: string
+      - description: Enter brand_name
+        in: query
+        name: brand_name
+        type: string
+      - description: Enter price
+        in: query
+        name: price
+        type: string
+      - description: Enter rating
+        in: query
+        name: rating
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Get products
+      tags:
+      - Common
+  /common/product/{product_id}:
+    get:
+      description: Get product
+      operationId: get_product
+      parameters:
+      - description: Enter product id
+        in: path
+        name: product_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Get product
+      tags:
+      - Common
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: athunticate user and generate token
+      operationId: login
+      parameters:
+      - description: Enter login details
+        in: body
+        name: Login
+        required: true
+        schema:
+          $ref: '#/definitions/dto.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      summary: Login members
+      tags:
+      - Auth
+  /merchant:
+    patch:
+      consumes:
+      - application/json
+      description: Update details of merchant
+      operationId: update_details_merchant
+      parameters:
+      - description: Enter merchant details
+        in: body
+        name: MerchantDetails
+        required: true
+        schema:
+          $ref: '#/definitions/models.Users'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "304":
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Update merchant
+      tags:
+      - Merchant
+  /merchant/brand:
+    get:
+      description: Get all brands
+      operationId: get_brands
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Get brands
+      tags:
+      - Merchant
+  /merchant/category:
+    get:
+      description: Get all categories
+      operationId: get_categories
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Get categories
+      tags:
+      - Merchant
+  /merchant/order:
+    get:
+      consumes:
+      - application/json
+      description: Get orders for the merchant
+      operationId: get_orders_merchant
+      parameters:
+      - description: Enter limit
+        in: query
+        name: limit
+        type: string
+      - description: Enter offset
+        in: query
+        name: offset
+        type: string
+      - description: Enter from_date
+        in: query
+        name: from_date
+        type: string
+      - description: Enter to_date
+        in: query
+        name: to_date
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Get orders
+      tags:
+      - Merchant
+  /merchant/order/{order_id}:
+    get:
+      description: Get order for the merchant
+      operationId: get_order_merchant
+      parameters:
+      - description: Enter order id
+        in: path
+        name: order_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Get order
+      tags:
+      - Merchant
+  /merchant/order/{order_item_id}:
+    patch:
+      consumes:
+      - application/json
+      description: Update order_item status for the merchant
+      operationId: update_order_item_merchant
+      parameters:
+      - description: Enter order_item id
+        in: path
+        name: order_item_id
+        required: true
+        type: string
+      - description: Enter OrderItem status
+        in: body
+        name: OrderItemStatus
+        required: true
+        schema:
+          $ref: '#/definitions/models.OrderedItems'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "304":
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Update order_item
+      tags:
+      - Merchant
+  /merchant/product:
+    get:
+      description: Get all products of the merchant
+      operationId: get_products_merchant
+      parameters:
+      - description: Enter limit
+        in: query
+        name: limit
+        type: string
+      - description: Enter offset
+        in: query
+        name: offset
+        type: string
+      - description: Enter category_name
+        in: query
+        name: category_name
+        type: string
+      - description: Enter brand_name
+        in: query
+        name: brand_name
+        type: string
+      - description: Enter price
+        in: query
+        name: price
+        type: string
+      - description: Enter rating
+        in: query
+        name: rating
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Get products
+      tags:
+      - Merchant
+    post:
+      consumes:
+      - application/json
+      description: Create a new product
+      operationId: create_product
+      parameters:
+      - description: Enter product details
+        in: body
+        name: CreateProduct
+        required: true
+        schema:
+          $ref: '#/definitions/models.Brands'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Create product
+      tags:
+      - Merchant
+  /merchant/product/{product_id}:
+    delete:
+      description: Delete product of the merchant
+      operationId: delete_product_merchant
+      parameters:
+      - description: Enter product id
+        in: path
+        name: product_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "304":
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Delete product
+      tags:
+      - Merchant
+    get:
+      description: Get product of the merchant
+      operationId: get_product_merchant
+      parameters:
+      - description: Enter product id
+        in: path
+        name: product_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Get product
+      tags:
+      - Merchant
+    patch:
+      consumes:
+      - application/json
+      description: Update product of the merchant
+      operationId: update_product_merchant
+      parameters:
+      - description: Enter product id
+        in: path
+        name: product_id
+        required: true
+        type: string
+      - description: Enter Product details
+        in: body
+        name: ProductDetails
+        required: true
+        schema:
+          $ref: '#/definitions/models.Products'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "304":
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Update product
+      tags:
+      - Merchant
+  /signup:
+    post:
+      consumes:
+      - application/json
+      description: Create a new member based on the role
+      operationId: signup
+      parameters:
+      - description: Enter your details
+        in: body
+        name: Signup
+        required: true
+        schema:
+          $ref: '#/definitions/models.Users'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      summary: Signup a new member
+      tags:
+      - Auth
+  /user:
+    patch:
+      consumes:
+      - application/json
+      description: Update details of user
+      operationId: update_details_user
+      parameters:
+      - description: Enter user details
+        in: body
+        name: UserDetails
+        required: true
+        schema:
+          $ref: '#/definitions/models.Users'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "304":
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Update user
+      tags:
+      - user
+  /user/order:
+    get:
+      description: Get orders of the user
+      operationId: get_orders_user
+      parameters:
+      - description: Enter limit
+        in: query
+        name: limit
+        type: string
+      - description: Enter offset
+        in: query
+        name: offset
+        type: string
+      - description: Enter from_date
+        in: query
+        name: from_date
+        type: string
+      - description: Enter to_date
+        in: query
+        name: to_date
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Get orders
+      tags:
+      - user
+    post:
+      consumes:
+      - application/json
+      description: Create a new order
+      operationId: create_order
+      parameters:
+      - description: Enter order details
+        in: body
+        name: CreateOrder
+        required: true
+        schema:
+          $ref: '#/definitions/models.Orders'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Create order
+      tags:
+      - user
+  /user/order/{order_id}:
+    get:
+      description: Get order of the user
+      operationId: get_order_user
+      parameters:
+      - description: Enter order id
+        in: path
+        name: order_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Get order
+      tags:
+      - user
+    patch:
+      consumes:
+      - application/json
+      description: Update order status for the merchant
+      operationId: update_order_user
+      parameters:
+      - description: Enter order id
+        in: path
+        name: order_id
+        required: true
+        type: string
+      - description: Enter order status
+        in: body
+        name: OrderStatus
+        required: true
+        schema:
+          $ref: '#/definitions/models.Orders'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "304":
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
+      security:
+      - JWT: []
+      summary: Update order
+      tags:
+      - user
+swagger: "2.0"

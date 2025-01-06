@@ -8,12 +8,14 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// recover from panic
 func recoverLoadEnv() {
 	if res := recover(); res != nil {
 		fmt.Println("recovered from ", res)
 	}
 }
 
+// load the env file
 func LoadEnvFile() {
 	defer recoverLoadEnv()
 

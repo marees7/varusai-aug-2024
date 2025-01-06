@@ -10,21 +10,33 @@ import (
 	"gorm.io/gorm"
 )
 
-func UserRoute(app *fiber.App, db *gorm.DB) {
+func User(app *fiber.App, db *gorm.DB) {
+	// send db connection to repository
 	userRepository := repositories.CommenceUserRepository(db)
 
+	// send repo to service
 	userService := services.CommenceUserService(userRepository)
 
+	// Initialize the handler struct
 	handler := handlers.UserHandler{IUserService: userService}
 
-	user := app.Group("/v1/role/user")
-	user.Use(middleware.ValidateJwt)
+	// group the common endpoints
+	general := app.Group("/v1/common")
 
-	user.Post("/order", handler.PlaceOrderHandler)
-	user.Get("/order", handler.GetOrdersHandler)
-	user.Get("/product/filter", handler.FilterProductsHandler)
-	user.Get("product", handler.GetProductsHandler)
-	user.Get("/product/:id", handler.GetProductHandler)
-	user.Patch("", handler.UpdateUserHandler)
-	user.Patch("/order/:id", handler.CancelOrderHandler)
+	// common endpoints
+	general.Get("/product", handler.GetProducts)
+	general.Get("/product/:id", handler.GetProduct)
+
+	// group the user endpoints
+	user := app.Group("/v1/user")
+
+	// added middleware for token validation and role authorization
+	user.Use(middleware.ValidateJwt("user"), middleware.UserRoleAuthentication)
+
+	// user endpoints
+	user.Post("/order", handler.CreateOrder)
+	user.Get("/order", handler.GetOrders)
+	user.Get("/order/:id", handler.GetOrder)
+	user.Patch("", handler.UpdateUser)
+	user.Patch("/order/:id", handler.UpdateOrder)
 }

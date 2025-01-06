@@ -10,22 +10,32 @@ import (
 	"gorm.io/gorm"
 )
 
-func MerchantRoute(app *fiber.App, db *gorm.DB) {
+func Merchant(app *fiber.App, db *gorm.DB) {
+	// send db connection to repository
 	merchantRepository := repositories.CommenceMerchantRepository(db)
 
+	// send repo to service
 	merchantService := services.CommenceMerchantService(merchantRepository)
 
+	// Initialize the handler struct
 	handler := handlers.MerchantHandler{IMerchantService: merchantService}
 
-	merchant := app.Group("/v1/role/merchant")
-	merchant.Use(middleware.ValidateJwt, middleware.MerchantRoleAuthentication)
+	// group the merchant endpoints
+	merchant := app.Group("/v1/merchant")
 
-	merchant.Post("/product", handler.AddProductHandler)
-	merchant.Get("product", handler.GetProductsHandler)
-	merchant.Get("/order", handler.GetOrdersHandler)
-	merchant.Get("/product/:id", handler.GetProductHandler)
-	merchant.Patch("/product", handler.UpdateProductHandler)
-	merchant.Patch("", handler.UpdateMerchantHandler)
-	merchant.Patch("/order:id", handler.UpdateOrderStatusHandler)
-	merchant.Delete("/product/:id", handler.RemoveProductHandler)
+	// added middleware for token validation and role authorization
+	merchant.Use(middleware.ValidateJwt("merchant"), middleware.MerchantRoleAuthentication)
+
+	// merchant endpoints
+	merchant.Post("/product", handler.CreateProduct)
+	merchant.Get("/category", handler.GetCategories)
+	merchant.Get("/brand", handler.GetBrands)
+	merchant.Get("product", handler.GetProducts)
+	merchant.Get("/product/:id", handler.GetProduct)
+	merchant.Get("/order", handler.GetOrders)
+	merchant.Get("/order/:id", handler.GetOrder)
+	merchant.Patch("/product", handler.UpdateProduct)
+	merchant.Patch("", handler.UpdateMerchant)
+	merchant.Patch("/order/:id", handler.UpdateOrderStatus)
+	merchant.Delete("/product/:id", handler.DeleteProduct)
 }

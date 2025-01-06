@@ -13,7 +13,21 @@ type AdminHandler struct {
 	services.IAdminService
 }
 
-func (service *AdminHandler) AddCategoreyHandler(ctx *fiber.Ctx) error {
+// create new category
+//
+//	@Summary		Create category
+//	@Description	Create a new category
+//	@ID				create_category
+//	@Tags			Admin
+//	@Accept			json
+//	@Produce		json
+//	@Security		JWT
+//	@Param			Category	details		body	models.Categories	true	"Enter category details"
+//	@Success		200			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		409			{object}	dto.ResponseJson
+//	@Router			/admin/category [post]
+func (service *AdminHandler) CreateCategorey(ctx *fiber.Ctx) error {
 	var category models.Categories
 
 	if err := ctx.BodyParser(&category); err != nil {
@@ -23,7 +37,8 @@ func (service *AdminHandler) AddCategoreyHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	errResponse := service.IAdminService.AddCategoreyService(&category)
+	// call create category service
+	errResponse := service.IAdminService.CreateCategorey(&category)
 	if errResponse != nil {
 		return ctx.Status(errResponse.Status).JSON(dto.ResponseJson{
 			Error: errResponse.Error,
@@ -31,12 +46,26 @@ func (service *AdminHandler) AddCategoreyHandler(ctx *fiber.Ctx) error {
 	}
 
 	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{
-		Message: "Category created successfully",
+		Message: "category created successfully",
 		Data:    category,
 	})
 }
 
-func (service *AdminHandler) AddBrandHandler(ctx *fiber.Ctx) error {
+// create new brand
+//
+//	@Summary		Create brand
+//	@Description	Create a new brand
+//	@ID				create_brand
+//	@Tags			Admin
+//	@Accept			json
+//	@Produce		json
+//	@Security		JWT
+//	@Param			Login	body		models.Brands	true	"Enter brand details"
+//	@Success		200		{object}	dto.ResponseJson
+//	@Failure		400		{object}	dto.ResponseJson
+//	@Failure		409		{object}	dto.ResponseJson
+//	@Router			/admin/brand [post]
+func (service *AdminHandler) CreateBrand(ctx *fiber.Ctx) error {
 	var brand models.Brands
 
 	if err := ctx.BodyParser(&brand); err != nil {
@@ -46,7 +75,8 @@ func (service *AdminHandler) AddBrandHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	errResponse := service.IAdminService.AddBrandService(&brand)
+	// call create brand service
+	errResponse := service.IAdminService.CreateBrand(&brand)
 	if errResponse != nil {
 		return ctx.Status(errResponse.Status).JSON(dto.ResponseJson{
 			Error: errResponse.Error,
@@ -54,7 +84,7 @@ func (service *AdminHandler) AddBrandHandler(ctx *fiber.Ctx) error {
 	}
 
 	return ctx.Status(fiber.StatusCreated).JSON(dto.ResponseJson{
-		Message: "Brand created successfully",
+		Message: "brand created successfully",
 		Data:    brand,
 	})
 }
