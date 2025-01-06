@@ -23,14 +23,14 @@ type MerchantHandler struct {
 //	@Tags			Merchant
 //	@Accept			json
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			CreateProduct body models.Brands true "Enter product details"
-//	@Success		201		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		409		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			CreateProduct	body		models.Brands	true	"Enter product details"
+//	@Success		201				{object}	dto.ResponseJson
+//	@Failure		400				{object}	dto.ResponseJson
+//	@Failure		409				{object}	dto.ResponseJson
+//	@Failure		404				{object}	dto.ResponseJson
+//	@Failure		401				{object}	dto.ResponseJson
+//	@Failure		403				{object}	dto.ResponseJson
 //	@Router			/merchant/product [post]
 func (service *MerchantHandler) CreateProduct(ctx *fiber.Ctx) error {
 	var product models.Products
@@ -64,11 +64,11 @@ func (service *MerchantHandler) CreateProduct(ctx *fiber.Ctx) error {
 //	@ID				get_categories
 //	@Tags			Merchant
 //	@Produce		json
-//	@Security 	    JWT
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Success		200	{object}	dto.ResponseJson
+//	@Failure		400	{object}	dto.ResponseJson
+//	@Failure		401	{object}	dto.ResponseJson
+//	@Failure		403	{object}	dto.ResponseJson
 //	@Router			/merchant/category [get]
 func (service *MerchantHandler) GetCategories(ctx *fiber.Ctx) error {
 	// call get category service
@@ -91,11 +91,11 @@ func (service *MerchantHandler) GetCategories(ctx *fiber.Ctx) error {
 //	@ID				get_brands
 //	@Tags			Merchant
 //	@Produce		json
-//	@Security 	    JWT
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Success		200	{object}	dto.ResponseJson
+//	@Failure		400	{object}	dto.ResponseJson
+//	@Failure		401	{object}	dto.ResponseJson
+//	@Failure		403	{object}	dto.ResponseJson
 //	@Router			/merchant/brand [get]
 func (service *MerchantHandler) GetBrands(ctx *fiber.Ctx) error {
 	// call get brand service
@@ -118,17 +118,17 @@ func (service *MerchantHandler) GetBrands(ctx *fiber.Ctx) error {
 //	@ID				get_products_merchant
 //	@Tags			Merchant
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			limit query string false "Enter limit"
-//	@Param			offset query string false "Enter offset"
-//	@Param			category_name query string false "Enter category_name"
-//	@Param			brand_name query string false "Enter brand_name"
-//	@Param			price query string false "Enter price"
-//	@Param			rating query string false "Enter rating"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			limit			query		string	false	"Enter limit"
+//	@Param			offset			query		string	false	"Enter offset"
+//	@Param			category_name	query		string	false	"Enter category_name"
+//	@Param			brand_name		query		string	false	"Enter brand_name"
+//	@Param			price			query		string	false	"Enter price"
+//	@Param			rating			query		string	false	"Enter rating"
+//	@Success		200				{object}	dto.ResponseJson
+//	@Failure		400				{object}	dto.ResponseJson
+//	@Failure		401				{object}	dto.ResponseJson
+//	@Failure		403				{object}	dto.ResponseJson
 //	@Router			/merchant/product [get]
 func (service *MerchantHandler) GetProducts(ctx *fiber.Ctx) error {
 	var (
@@ -208,13 +208,13 @@ func (service *MerchantHandler) GetProducts(ctx *fiber.Ctx) error {
 //	@ID				get_product_merchant
 //	@Tags			Merchant
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			product_id path string true "Enter product id"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			product_id	path		string	true	"Enter product id"
+//	@Success		200			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		404			{object}	dto.ResponseJson
+//	@Failure		401			{object}	dto.ResponseJson
+//	@Failure		403			{object}	dto.ResponseJson
 //	@Router			/merchant/product/{product_id} [get]
 func (service *MerchantHandler) GetProduct(ctx *fiber.Ctx) error {
 	userId := ctx.Locals("user_id").(uuid.UUID)
@@ -241,15 +241,15 @@ func (service *MerchantHandler) GetProduct(ctx *fiber.Ctx) error {
 //	@Tags			Merchant
 //	@Accept			json
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			limit query string false "Enter limit"
-//	@Param			offset query string false "Enter offset"
-//	@Param			from_date query string false "Enter from_date"
-//	@Param			to_date query string false "Enter to_date"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			limit		query		string	false	"Enter limit"
+//	@Param			offset		query		string	false	"Enter offset"
+//	@Param			from_date	query		string	false	"Enter from_date"
+//	@Param			to_date		query		string	false	"Enter to_date"
+//	@Success		200			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		401			{object}	dto.ResponseJson
+//	@Failure		403			{object}	dto.ResponseJson
 //	@Router			/merchant/order [get]
 func (service *MerchantHandler) GetOrders(ctx *fiber.Ctx) error {
 	filters := make(map[string]interface{})
@@ -297,13 +297,13 @@ func (service *MerchantHandler) GetOrders(ctx *fiber.Ctx) error {
 //	@ID				get_order_merchant
 //	@Tags			Merchant
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			order_id path string true "Enter order id"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			order_id	path		string	true	"Enter order id"
+//	@Success		200			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		404			{object}	dto.ResponseJson
+//	@Failure		401			{object}	dto.ResponseJson
+//	@Failure		403			{object}	dto.ResponseJson
 //	@Router			/merchant/order/{order_id} [get]
 func (service *MerchantHandler) GetOrder(ctx *fiber.Ctx) error {
 	userId := ctx.Locals("user_id").(uuid.UUID)
@@ -330,14 +330,15 @@ func (service *MerchantHandler) GetOrder(ctx *fiber.Ctx) error {
 //	@Tags			Merchant
 //	@Accept			json
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			product_id path string true "Enter product id"
-//	@Param			ProductDetails body models.Products true "Enter Product details"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			product_id		path		string			true	"Enter product id"
+//	@Param			ProductDetails	body		models.Products	true	"Enter Product details"
+//	@Success		200				{object}	dto.ResponseJson
+//	@Failure		400				{object}	dto.ResponseJson
+//	@Failure		304				{object}	dto.ResponseJson
+//	@Failure		404				{object}	dto.ResponseJson
+//	@Failure		401				{object}	dto.ResponseJson
+//	@Failure		403				{object}	dto.ResponseJson
 //	@Router			/merchant/product/{product_id} [patch]
 func (service *MerchantHandler) UpdateProduct(ctx *fiber.Ctx) error {
 	var product models.Products
@@ -371,15 +372,15 @@ func (service *MerchantHandler) UpdateProduct(ctx *fiber.Ctx) error {
 //	@Tags			Merchant
 //	@Accept			json
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			order_item_id path string true "Enter order_item id"
-//	@Param			OrderItemStatus body models.OrderedItems true "Enter OrderItem status"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		304		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			order_item_id	path		string				true	"Enter order_item id"
+//	@Param			OrderItemStatus	body		models.OrderedItems	true	"Enter OrderItem status"
+//	@Success		200				{object}	dto.ResponseJson
+//	@Failure		304				{object}	dto.ResponseJson
+//	@Failure		400				{object}	dto.ResponseJson
+//	@Failure		404				{object}	dto.ResponseJson
+//	@Failure		401				{object}	dto.ResponseJson
+//	@Failure		403				{object}	dto.ResponseJson
 //	@Router			/merchant/order/{order_item_id} [patch]
 func (service *MerchantHandler) UpdateOrderStatus(ctx *fiber.Ctx) error {
 	var orderItem models.OrderedItems
@@ -415,14 +416,14 @@ func (service *MerchantHandler) UpdateOrderStatus(ctx *fiber.Ctx) error {
 //	@Tags			Merchant
 //	@Accept			json
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			MerchantDetails body models.Users true "Enter merchant details"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Success		304		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			MerchantDetails	body		models.Users	true	"Enter merchant details"
+//	@Success		200				{object}	dto.ResponseJson
+//	@Success		304				{object}	dto.ResponseJson
+//	@Failure		400				{object}	dto.ResponseJson
+//	@Failure		404				{object}	dto.ResponseJson
+//	@Failure		401				{object}	dto.ResponseJson
+//	@Failure		403				{object}	dto.ResponseJson
 //	@Router			/merchant [patch]
 func (service *MerchantHandler) UpdateMerchant(ctx *fiber.Ctx) error {
 	var user models.Users
@@ -455,14 +456,14 @@ func (service *MerchantHandler) UpdateMerchant(ctx *fiber.Ctx) error {
 //	@ID				delete_product_merchant
 //	@Tags			Merchant
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			product_id path string true "Enter product id"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		304		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			product_id	path		string	true	"Enter product id"
+//	@Success		200			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		304			{object}	dto.ResponseJson
+//	@Failure		404			{object}	dto.ResponseJson
+//	@Failure		401			{object}	dto.ResponseJson
+//	@Failure		403			{object}	dto.ResponseJson
 //	@Router			/merchant/product/{product_id} [delete]
 func (service *MerchantHandler) DeleteProduct(ctx *fiber.Ctx) error {
 	id := ctx.Params("id")

@@ -21,13 +21,12 @@ type AdminHandler struct {
 //	@Tags			Admin
 //	@Accept			json
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			Category details	body		models.Categories	true	"Enter category details"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		409		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Router	 		/admin/category [post]
+//	@Security		JWT
+//	@Param			Category	details		body	models.Categories	true	"Enter category details"
+//	@Success		200			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		409			{object}	dto.ResponseJson
+//	@Router			/admin/category [post]
 func (service *AdminHandler) CreateCategorey(ctx *fiber.Ctx) error {
 	var category models.Categories
 
@@ -60,12 +59,11 @@ func (service *AdminHandler) CreateCategorey(ctx *fiber.Ctx) error {
 //	@Tags			Admin
 //	@Accept			json
 //	@Produce		json
-//	@Security 	    JWT
+//	@Security		JWT
 //	@Param			Login	body		models.Brands	true	"Enter brand details"
 //	@Success		200		{object}	dto.ResponseJson
 //	@Failure		400		{object}	dto.ResponseJson
 //	@Failure		409		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
 //	@Router			/admin/brand [post]
 func (service *AdminHandler) CreateBrand(ctx *fiber.Ctx) error {
 	var brand models.Brands

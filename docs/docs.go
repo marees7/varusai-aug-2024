@@ -64,12 +64,6 @@ const docTemplate = `{
                             "$ref": "#/definitions/dto.ResponseJson"
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/dto.ResponseJson"
-                        }
-                    },
                     "409": {
                         "description": "Conflict",
                         "schema": {
@@ -118,12 +112,6 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/dto.ResponseJson"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
                         "schema": {
                             "$ref": "#/definitions/dto.ResponseJson"
                         }
@@ -1006,6 +994,12 @@ const docTemplate = `{
                             "$ref": "#/definitions/dto.ResponseJson"
                         }
                     },
+                    "304": {
+                        "description": "Not Modified",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ResponseJson"
+                        }
+                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -1269,18 +1263,6 @@ const docTemplate = `{
                     },
                     "403": {
                         "description": "Forbidden",
-                        "schema": {
-                            "$ref": "#/definitions/dto.ResponseJson"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/dto.ResponseJson"
-                        }
-                    },
-                    "409": {
-                        "description": "Conflict",
                         "schema": {
                             "$ref": "#/definitions/dto.ResponseJson"
                         }

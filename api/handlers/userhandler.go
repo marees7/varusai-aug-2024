@@ -23,14 +23,12 @@ type UserHandler struct {
 //	@Tags			user
 //	@Accept			json
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			CreateOrder body models.Orders true "Enter order details"
-//	@Success		201		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		409		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			CreateOrder	body		models.Orders	true	"Enter order details"
+//	@Success		201			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		401			{object}	dto.ResponseJson
+//	@Failure		403			{object}	dto.ResponseJson
 //	@Router			/user/order [post]
 func (service *UserHandler) CreateOrder(ctx *fiber.Ctx) error {
 	var order models.Orders
@@ -64,17 +62,17 @@ func (service *UserHandler) CreateOrder(ctx *fiber.Ctx) error {
 //	@ID				get_products
 //	@Tags			Common
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			limit query string false "Enter limit"
-//	@Param			offset query string false "Enter offset"
-//	@Param			category_name query string false "Enter category_name"
-//	@Param			brand_name query string false "Enter brand_name"
-//	@Param			price query string false "Enter price"
-//	@Param			rating query string false "Enter rating"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			limit			query		string	false	"Enter limit"
+//	@Param			offset			query		string	false	"Enter offset"
+//	@Param			category_name	query		string	false	"Enter category_name"
+//	@Param			brand_name		query		string	false	"Enter brand_name"
+//	@Param			price			query		string	false	"Enter price"
+//	@Param			rating			query		string	false	"Enter rating"
+//	@Success		200				{object}	dto.ResponseJson
+//	@Failure		400				{object}	dto.ResponseJson
+//	@Failure		401				{object}	dto.ResponseJson
+//	@Failure		403				{object}	dto.ResponseJson
 //	@Router			/common/product [get]
 func (service *UserHandler) GetProducts(ctx *fiber.Ctx) error {
 	var (
@@ -147,13 +145,13 @@ func (service *UserHandler) GetProducts(ctx *fiber.Ctx) error {
 //	@ID				get_product
 //	@Tags			Common
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			product_id path string true "Enter product id"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			product_id	path		string	true	"Enter product id"
+//	@Success		200			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		404			{object}	dto.ResponseJson
+//	@Failure		401			{object}	dto.ResponseJson
+//	@Failure		403			{object}	dto.ResponseJson
 //	@Router			/common/product/{product_id} [get]
 func (service *UserHandler) GetProduct(ctx *fiber.Ctx) error {
 	id := ctx.Params("id")
@@ -178,15 +176,15 @@ func (service *UserHandler) GetProduct(ctx *fiber.Ctx) error {
 //	@ID				get_orders_user
 //	@Tags			user
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			limit query string false "Enter limit"
-//	@Param			offset query string false "Enter offset"
-//	@Param			from_date query string false "Enter from_date"
-//	@Param			to_date query string false "Enter to_date"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			limit		query		string	false	"Enter limit"
+//	@Param			offset		query		string	false	"Enter offset"
+//	@Param			from_date	query		string	false	"Enter from_date"
+//	@Param			to_date		query		string	false	"Enter to_date"
+//	@Success		200			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		401			{object}	dto.ResponseJson
+//	@Failure		403			{object}	dto.ResponseJson
 //	@Router			/user/order [get]
 func (service *UserHandler) GetOrders(ctx *fiber.Ctx) error {
 	filters := make(map[string]interface{})
@@ -234,13 +232,13 @@ func (service *UserHandler) GetOrders(ctx *fiber.Ctx) error {
 //	@ID				get_order_user
 //	@Tags			user
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			order_id path string true "Enter order id"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			order_id	path		string	true	"Enter order id"
+//	@Success		200			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		404			{object}	dto.ResponseJson
+//	@Failure		401			{object}	dto.ResponseJson
+//	@Failure		403			{object}	dto.ResponseJson
 //	@Router			/user/order/{order_id} [get]
 func (service *UserHandler) GetOrder(ctx *fiber.Ctx) error {
 	userId := ctx.Locals("user_id").(uuid.UUID)
@@ -267,15 +265,15 @@ func (service *UserHandler) GetOrder(ctx *fiber.Ctx) error {
 //	@Tags			user
 //	@Accept			json
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			order_id path string true "Enter order id"
-//	@Param			OrderStatus body models.Orders true "Enter order status"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Failure		304		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			order_id	path		string			true	"Enter order id"
+//	@Param			OrderStatus	body		models.Orders	true	"Enter order status"
+//	@Success		200			{object}	dto.ResponseJson
+//	@Failure		304			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		404			{object}	dto.ResponseJson
+//	@Failure		401			{object}	dto.ResponseJson
+//	@Failure		403			{object}	dto.ResponseJson
 //	@Router			/user/order/{order_id} [patch]
 func (service *UserHandler) UpdateOrder(ctx *fiber.Ctx) error {
 	var order models.Orders
@@ -311,14 +309,14 @@ func (service *UserHandler) UpdateOrder(ctx *fiber.Ctx) error {
 //	@Tags			user
 //	@Accept			json
 //	@Produce		json
-//	@Security 	    JWT
-//	@Param			UserDetails body models.Users true "Enter user details"
-//	@Success		200		{object}	dto.ResponseJson
-//	@Success		304		{object}	dto.ResponseJson
-//	@Failure		400		{object}	dto.ResponseJson
-//	@Failure		404		{object}	dto.ResponseJson
-//	@Failure		401		{object}	dto.ResponseJson
-//	@Failure		403		{object}	dto.ResponseJson
+//	@Security		JWT
+//	@Param			UserDetails	body		models.Users	true	"Enter user details"
+//	@Success		200			{object}	dto.ResponseJson
+//	@Success		304			{object}	dto.ResponseJson
+//	@Failure		400			{object}	dto.ResponseJson
+//	@Failure		404			{object}	dto.ResponseJson
+//	@Failure		401			{object}	dto.ResponseJson
+//	@Failure		403			{object}	dto.ResponseJson
 //	@Router			/user [patch]
 func (service *UserHandler) UpdateUser(ctx *fiber.Ctx) error {
 	var user models.Users

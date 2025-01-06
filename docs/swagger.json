@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "It's an basic ecommerce site where you can view products and order any product. Then also you can be a seller by listing your product and also admin",
+        "description": "It's an basic ecommerce site where you can view products and order any product. Then also you can be a seller by listing your products",
         "title": "Shopping-site API",
         "contact": {
             "name": "varusai",
@@ -58,12 +58,6 @@
                             "$ref": "#/definitions/dto.ResponseJson"
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/dto.ResponseJson"
-                        }
-                    },
                     "409": {
                         "description": "Conflict",
                         "schema": {
@@ -112,12 +106,6 @@
                     },
                     "400": {
                         "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/dto.ResponseJson"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
                         "schema": {
                             "$ref": "#/definitions/dto.ResponseJson"
                         }
@@ -1000,6 +988,12 @@
                             "$ref": "#/definitions/dto.ResponseJson"
                         }
                     },
+                    "304": {
+                        "description": "Not Modified",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ResponseJson"
+                        }
+                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -1263,18 +1257,6 @@
                     },
                     "403": {
                         "description": "Forbidden",
-                        "schema": {
-                            "$ref": "#/definitions/dto.ResponseJson"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/dto.ResponseJson"
-                        }
-                    },
-                    "409": {
-                        "description": "Conflict",
                         "schema": {
                             "$ref": "#/definitions/dto.ResponseJson"
                         }

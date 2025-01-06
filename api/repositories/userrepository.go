@@ -75,7 +75,7 @@ func (db *userRepository) CreateOrder(userId uuid.UUID, order models.Orders) (*m
 	// get the user records from db
 	record = db.Where("user_id= ?", userId).First(&userDetails)
 	if record.Error != nil {
-		return nil, &dto.ErrorResponse{Status: fiber.StatusInternalServerError,
+		return nil, &dto.ErrorResponse{Status: fiber.StatusBadRequest,
 			Error: record.Error.Error()}
 	}
 

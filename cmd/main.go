@@ -20,7 +20,7 @@ func init() {
 
 //	@title			Shopping-site API
 //	@version		1.0
-//	@description	It's an basic ecommerce site where you can view products and order any product. Then also you can be a seller by listing your product and also admin
+//	@description	It's an basic ecommerce site where you can view products and order any product. Then also you can be a seller by listing your products
 //
 // @contact.name	varusai
 // @contact.email	varusi0605@gmail.com

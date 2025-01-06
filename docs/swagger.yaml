@@ -192,10 +192,6 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/dto.ResponseJson'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/dto.ResponseJson'
         "409":
           description: Conflict
           schema:
@@ -227,10 +223,6 @@ paths:
             $ref: '#/definitions/dto.ResponseJson'
         "400":
           description: Bad Request
-          schema:
-            $ref: '#/definitions/dto.ResponseJson'
-        "404":
-          description: Not Found
           schema:
             $ref: '#/definitions/dto.ResponseJson'
         "409":
@@ -800,6 +792,10 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/dto.ResponseJson'
+        "304":
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/dto.ResponseJson'
         "400":
           description: Bad Request
           schema:
@@ -971,14 +967,6 @@ paths:
             $ref: '#/definitions/dto.ResponseJson'
         "403":
           description: Forbidden
-          schema:
-            $ref: '#/definitions/dto.ResponseJson'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/dto.ResponseJson'
-        "409":
-          description: Conflict
           schema:
             $ref: '#/definitions/dto.ResponseJson'
       security:
